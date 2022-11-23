@@ -2,6 +2,7 @@ const express = require('express')
 const app =express()
 const mongoose = require("mongoose")
 const http = require("http")
+const { allRoutes } = require('./routes/router')
 class Application{
     constructor(port,URL_DB){
        this.configApplication()
@@ -60,6 +61,7 @@ class Application{
                 message: "express server is up"
             })
         })
+        app.use(allRoutes)
     }
 
 }   
