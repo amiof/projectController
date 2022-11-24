@@ -11,6 +11,7 @@ const UserSchema=new schema({
     skills: {type :[String], default: []},
     team: {type :[mongoose.Types.ObjectId], default: []},
     role: {type :[String], default:["USER"]},
+    token: {type :String, default:""},
 
 
 },{

@@ -7,7 +7,7 @@ const router=Router()
 
 
 router.post("/register",registerValidate(),checkErrorValidation, AuthController.register )
-
+router.post("/login",AuthController.login)
 module.exports={
    authRoutes:router
 }
