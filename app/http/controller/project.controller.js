@@ -24,5 +24,5 @@ class ProjectController{
 
 }
 module.exports={
-    ProjectController:new ProjectController
+    ProjectController:new ProjectController()
 }

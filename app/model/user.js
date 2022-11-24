@@ -1,4 +1,4 @@
-const { model } = require("mongoose")
+const { model, default: mongoose } = require("mongoose")
 
 const schema=require("mongoose").Schema
 const UserSchema=new schema({
@@ -8,9 +8,9 @@ const UserSchema=new schema({
     mobile: {type :String, required:true, unique:true},
     password: {type :String, required:true,},
     email: {type :String,required:true, unique:true},
-    skills: {type :String, default: []},
-    team: {type :String, default: []},
-    role: {type :String, default:["USER"]},
+    skills: {type :[String], default: []},
+    team: {type :[mongoose.Types.ObjectId], default: []},
+    role: {type :[String], default:["USER"]},
 
 
 },{
