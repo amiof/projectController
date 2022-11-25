@@ -9,20 +9,20 @@ const hashedPassword=(data)=>{
 }
 
 const createToken=(payload)=>{
-    return jwt.sign(payload,process.env.PRIVATE_KEY,{expiresIn: "3 days"})
+    return jwt.sign(payload,process.env.PRIVATE_KEY,{ expiresIn :"1y"})
+}
+const verifyJwtToken=(token)=>{
+  
+        const resultToken= jwt.verify(token, process.env.PRIVATE_KEY)
+        if(!resultToken.username)throw {status:401,message:"وارد حساب کاربری خود شوید"}
+        return resultToken
+    
 }
 
 
-const checkHashPass=async (username,pass)=>{
-    const user=await userModel.findOne({username})
-    if(user?.password){
-        return bcrypt.compareSync(pass,user.password)
-        
-    }
-
-}
 
 module.exports={
     createToken,
     hashedPassword,
+    verifyJwtToken
 }

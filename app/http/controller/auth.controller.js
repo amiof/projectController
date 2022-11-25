@@ -26,7 +26,6 @@ class AuthController {
       const passCheck = bcrypt.compareSync(password, user.password);
       if (!passCheck) throw { status: 401, message: "یوزرنیم و یا پسورد شما اشتباه می باشد" };
      const  token = createToken({username});
-      console.log(token)
       user.token = token;
       user.save();
       res.status(200).json({
