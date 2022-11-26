@@ -1,14 +1,17 @@
 const { userModel } = require("../../model/user")
+const { makeLInkImage } = require("../../module/functions")
 
 
 class UserController{
     getProfile(req,res,next){
         try{
             const user=req.user
+
             res.status(200).json({
                 status:200,
                 success:true,
-                user
+                user,
+                imageLink:makeLInkImage(user.profile_image)
             })
         }catch(error){
             next(error)
@@ -46,10 +49,14 @@ class UserController{
             const userId=req.user._id
             const result= await userModel.updateOne({_id:userId},{$set:{profile_image:filepath}})
             if(!result)throw {status:400, message:"آپدیت انجام نشد"}
+            const userFind=await userModel.findOne({_id:userId})
+           
+            const imageLInk="http://localhost:3500/"+ userFind.profile_image
             res.status(200).json({
                 status:200,
                 success:true,
-                message:"اپدیت باموفقیت انجام شد"
+                message:"اپدیت باموفقیت انجام شد",
+                profile_image:imageLInk
             })
         } catch (error) {
             next(error)

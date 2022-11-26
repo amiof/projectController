@@ -20,6 +20,9 @@ const verifyJwtToken=(token)=>{
         return resultToken
     
 }
+const makeLInkImage=(publicDir)=>{
+    return `http://localhost:3500/${publicDir}`
+}
 const createPathUpload=()=>{
     const date=new Date()
     const year=date.getFullYear()
@@ -34,5 +37,6 @@ module.exports={
     createToken,
     hashedPassword,
     verifyJwtToken,
-    createPathUpload
+    createPathUpload,
+    makeLInkImage
 }
