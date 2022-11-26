@@ -7,6 +7,7 @@ const UserSchema=new schema({
     username : {type :String,required:true, unique:true},
     mobile: {type :String, required:true, unique:true},
     password: {type :String, required:true,},
+    profile_image: {type :String,},
     email: {type :String,required:true, unique:true},
     skills: {type :[String], default: []},
     team: {type :[mongoose.Types.ObjectId], default: []},

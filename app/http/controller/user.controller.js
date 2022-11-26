@@ -1,5 +1,6 @@
 const { userModel } = require("../../model/user")
 
+
 class UserController{
     getProfile(req,res,next){
         try{
@@ -34,6 +35,22 @@ class UserController{
                 message:"بروزرسانی با موفقیت انجام شد"
             })
 
+        } catch (error) {
+            next(error)
+        }
+    }
+    async editProfileImage(req,res,next){
+        try {
+            if(Object.keys(req.file).length==0)throw {status:400, message:"لطفا یک فایل انتخاب کنید"}
+            const filepath=req.file?.path.replace(/[\\\\]/gm ,"/")
+            const userId=req.user._id
+            const result= await userModel.updateOne({_id:userId},{$set:{profile_image:filepath}})
+            if(!result)throw {status:400, message:"آپدیت انجام نشد"}
+            res.status(200).json({
+                status:200,
+                success:true,
+                message:"اپدیت باموفقیت انجام شد"
+            })
         } catch (error) {
             next(error)
         }
